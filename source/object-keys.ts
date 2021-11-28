@@ -14,7 +14,7 @@ const stronglyTypedItems = objectKeys({a: 1, b: 2, c: 3}); // => Array<'a' | 'b'
 const untypedItems = Object.keys(items); // => Array<string>
 ```
 */
-export function objectKeys<Type extends Record<string, unknown>, Key extends Extract<keyof Type, string>>(
+export function objectKeys<Type extends Record<PropertyKey, unknown>, Key extends `${Exclude<keyof Type, symbol>}`>(
 	value: Type,
 ): Key[] {
 	return Object.keys(value) as Key[];
